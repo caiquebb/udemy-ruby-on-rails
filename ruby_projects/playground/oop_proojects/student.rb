@@ -1,7 +1,11 @@
 # Object Oriented Programing
 
+require_relative 'crud'
+
 class Student
-  attr_accessor :first_name, :last_name, :email, :username
+  include Crud
+
+  attr_accessor :first_name, :last_name, :email, :username, :password
 
   def initialize(first_name, last_name, email, username, password)
     @first_name = first_name
@@ -19,9 +23,6 @@ end
 caique = Student.new("Caique", "Bertolozzi", "caique@bertolozzi.me", "caiquebertolozzi", "123456")
 john = Student.new("John", "Doe", "john@doe.me", "johndoe", "123456")
 
-puts caique
-puts john
+hashed_password = caique.create_hash_digest(caique.password)
 
-caique.last_name = john.last_name
-
-puts caique
+puts hashed_password
